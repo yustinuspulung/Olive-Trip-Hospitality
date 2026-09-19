@@ -24,26 +24,19 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelect }) => {
           referrerPolicy="no-referrer"
         />
         
-        {/* Official Verification Badge */}
-        {hotel.verified && (
-          <div className="absolute top-2.5 left-2.5 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#062846]/90 backdrop-blur-xs text-white text-[11px] font-bold shadow-xs">
-            <CheckCircle2 className="w-3.5 h-3.5 text-[#E7B84B]" />
-            <span>Terverifikasi Resmi</span>
-          </div>
-        )}
 
         {/* City Zone Tag */}
-        <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-white/95 text-[#062846] text-[10px] font-bold shadow-xs">
+        <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-white/95 text-[#062846] text-[10px] font-bold shadow-xs z-20">
           {hotel.cityZone}
         </div>
 
-        {/* Official Partner Logo Pill */}
+        {/* Simplified Hover Overlay - Direct Transparent Logo over Faint Photo Backdrop */}
         {hotel.logoUrl && (
-          <div className="absolute bottom-2.5 left-2.5 px-2.5 py-1 bg-white/95 backdrop-blur-xs rounded-md shadow-xs border border-white/80 flex items-center justify-center max-w-[110px] h-7 pointer-events-none">
+          <div className="absolute inset-0 bg-[#062846]/60 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 z-10 pointer-events-none">
             <img
               src={hotel.logoUrl}
               alt={`${hotel.name} logo`}
-              className="max-h-5 max-w-[95px] w-auto h-auto object-contain"
+              className="max-h-20 sm:max-h-24 max-w-[85%] w-auto h-auto object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] transform scale-95 group-hover:scale-100 transition-transform duration-300"
               loading="lazy"
               referrerPolicy="no-referrer"
             />
@@ -56,7 +49,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelect }) => {
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
-          className="absolute bottom-2 right-2 p-1.5 rounded-md bg-black/50 hover:bg-black/80 text-white text-[10px] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
+          className="absolute bottom-2.5 right-2.5 p-1.5 rounded-md bg-black/60 hover:bg-black/90 text-white text-[10px] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity z-20"
           title="Buka Website Resmi Hotel"
         >
           <span>Web Resmi</span>

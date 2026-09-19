@@ -49,6 +49,8 @@ export const AccessibilityRadar: React.FC<AccessibilityRadarProps> = ({ hotel })
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const googleMapInstance = useRef<any>(null);
   const markersRef = useRef<any[]>([]);
+  const infoWindowRef = useRef<any>(null);
+  const hotelOverlayRef = useRef<any>(null);
 
   // Filter nearby places based on category and radius
   const filteredPlaces = hotel.nearbyPlaces.filter((place) => {
@@ -59,7 +61,7 @@ export const AccessibilityRadar: React.FC<AccessibilityRadarProps> = ({ hotel })
 
   // Attempt to initialize Google Maps JS API if API key is provided
   useEffect(() => {
-    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'AIzaSyDIGLlr7zmbWLn9mhUXg7CzjRcDctbbxKY';
     if (!apiKey || typeof window === 'undefined') {
       setMapLoaded(false);
       return;
@@ -93,21 +95,138 @@ export const AccessibilityRadar: React.FC<AccessibilityRadarProps> = ({ hotel })
         });
 
         googleMapInstance.current = map;
+        infoWindowRef.current = new window.google.maps.InfoWindow();
 
-        // Hotel Center Marker
-        new window.google.maps.Marker({
-          position: hotelPos,
-          map,
-          title: hotel.name,
-          icon: {
-            path: window.google.maps.SymbolPath.CIRCLE,
-            scale: 10,
-            fillColor: '#062846',
-            fillOpacity: 1,
-            strokeColor: '#E7B84B',
-            strokeWeight: 3
+        // Remove previous overlay if exists
+        if (hotelOverlayRef.current) {
+          hotelOverlayRef.current.setMap(null);
+        }
+
+        // Custom Circular Pin Overlay Class
+        class CustomHotelPinOverlay extends window.google.maps.OverlayView {
+          private position: { lat: number; lng: number };
+          private logoUrl: string;
+          private hotelName: string;
+          private onClickHandler: () => void;
+          private containerDiv: HTMLDivElement | null = null;
+
+          constructor(
+            position: { lat: number; lng: number },
+            logoUrl: string,
+            hotelName: string,
+            onClickHandler: () => void
+          ) {
+            super();
+            this.position = position;
+            this.logoUrl = logoUrl;
+            this.hotelName = hotelName;
+            this.onClickHandler = onClickHandler;
           }
-        });
+
+          onAdd() {
+            const div = document.createElement('div');
+            div.style.position = 'absolute';
+            div.style.cursor = 'pointer';
+            div.style.transform = 'translate(-50%, -100%)';
+            div.style.zIndex = '1000';
+            div.title = this.hotelName;
+
+            div.innerHTML = `
+              <div style="position: relative; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 4px 12px rgba(6,40,70,0.4)); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                <div style="width: 52px; height: 52px; border-radius: 9999px; background: #ffffff; border: 3px solid #062846; padding: 5px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #E7B84B;">
+                  <img src="${this.logoUrl}" alt="${this.hotelName}" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 9999px;" />
+                </div>
+                <div style="width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 10px solid #062846; margin-top: -2px;"></div>
+              </div>
+            `;
+
+            div.addEventListener('click', (e) => {
+              e.stopPropagation();
+              this.onClickHandler();
+            });
+
+            this.containerDiv = div;
+            const panes = this.getPanes();
+            panes.overlayMouseTarget.appendChild(div);
+          }
+
+          draw() {
+            const overlayProjection = this.getProjection();
+            if (!overlayProjection || !this.containerDiv) return;
+
+            const point = overlayProjection.fromLatLngToDivPixel(
+              new window.google.maps.LatLng(this.position.lat, this.position.lng)
+            );
+
+            if (point) {
+              this.containerDiv.style.left = point.x + 'px';
+              this.containerDiv.style.top = point.y + 'px';
+            }
+          }
+
+          onRemove() {
+            if (this.containerDiv && this.containerDiv.parentNode) {
+              this.containerDiv.parentNode.removeChild(this.containerDiv);
+              this.containerDiv = null;
+            }
+          }
+        }
+
+        const openInfoWindow = () => {
+          if (infoWindowRef.current) {
+            infoWindowRef.current.setPosition(hotelPos);
+            infoWindowRef.current.setContent(
+              `<div style="width: 220px; font-family: system-ui, -apple-system, sans-serif; border-radius: 10px; overflow: hidden; background: #ffffff;">` +
+                `<div style="position: relative; width: 100%; height: 115px; overflow: hidden; background-color: #f1f5f9;">` +
+                  `<img src="${hotel.coverImage}" alt="${hotel.name}" style="width: 100%; height: 100%; object-fit: cover; display: block;" />` +
+                  `<div style="position: absolute; top: 6px; right: 6px; background: rgba(6, 40, 70, 0.88); color: #ffffff; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px;">` +
+                    `${hotel.cityZone}` +
+                  `</div>` +
+                `</div>` +
+                `<div style="padding: 10px 12px; text-align: left;">` +
+                  `<div style="color: #f59e0b; font-size: 11px; margin-bottom: 3px;">` +
+                    `${'★'.repeat(hotel.stars)}` +
+                  `</div>` +
+                  `<h4 style="margin: 0 0 4px 0; color: #062846; font-size: 13px; font-weight: 800; line-height: 1.3;">` +
+                    `${hotel.name}` +
+                  `</h4>` +
+                  `<p style="margin: 0 0 8px 0; color: #66788A; font-size: 11px; line-height: 1.4;">` +
+                    `${hotel.address}` +
+                  `</p>` +
+                  `<div style="border-top: 1px solid #f1f5f9; padding-top: 6px; margin-top: 4px; display: flex; justify-content: flex-end;">` +
+                    `<a href="${hotel.officialUrl}" target="_blank" rel="noopener noreferrer" style="color: #1B6FAE; font-size: 11px; font-weight: 700; text-decoration: none;">` +
+                      `Buka Website Resmi &rarr;` +
+                    `</a>` +
+                  `</div>` +
+                `</div>` +
+              `</div>`
+            );
+            infoWindowRef.current.open(map);
+          }
+        };
+
+        if (hotel.logoUrl) {
+          const overlay = new CustomHotelPinOverlay(hotelPos, hotel.logoUrl, hotel.name, openInfoWindow);
+          overlay.setMap(map);
+          hotelOverlayRef.current = overlay;
+        } else {
+          // Fallback standard circle marker
+          const hotelMarker = new window.google.maps.Marker({
+            position: hotelPos,
+            map,
+            title: hotel.name,
+            icon: {
+              path: window.google.maps.SymbolPath.CIRCLE,
+              scale: 10,
+              fillColor: '#062846',
+              fillOpacity: 1,
+              strokeColor: '#E7B84B',
+              strokeWeight: 3
+            },
+            zIndex: 1000
+          });
+          hotelMarker.addListener('click', openInfoWindow);
+        }
 
         // Radius circle
         new window.google.maps.Circle({
@@ -160,6 +279,17 @@ export const AccessibilityRadar: React.FC<AccessibilityRadarProps> = ({ hotel })
 
       marker.addListener('click', () => {
         setSelectedPlace(place);
+        if (infoWindowRef.current) {
+          const placeMapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.name} ${place.address}`)}`;
+          infoWindowRef.current.setContent(
+            `<div style="padding:4px; font-family:sans-serif; max-width:200px;">` +
+            `<strong style="color:#062846; font-size:12px;">${place.name}</strong><br/>` +
+            `<span style="color:#1B6FAE; font-size:11px; font-weight:bold;">${place.distanceKm} km (${place.walkingOrDriving})</span><br/>` +
+            `<a href="${placeMapUrl}" target="_blank" rel="noopener noreferrer" style="color:#1B6FAE; font-size:11px; font-weight:bold; text-decoration:none;">Buka di Google Maps &rarr;</a>` +
+            `</div>`
+          );
+          infoWindowRef.current.open(googleMapInstance.current, marker);
+        }
       });
 
       markersRef.current.push(marker);

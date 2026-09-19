@@ -85,7 +85,7 @@ export const TripConfigurator: React.FC<TripConfiguratorProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-[#DCE5ED] shadow-sm p-5 sm:p-6 sticky top-24">
+    <div className="bg-white rounded-2xl border border-[#DCE5ED] shadow-sm p-5 sm:p-6 max-h-[calc(100vh-8.5rem)] overflow-y-auto custom-scrollbar transition-all">
       {/* Header */}
       <div className="flex items-center justify-between pb-3 border-b border-[#DCE5ED]">
         <div className="flex items-center gap-2">
@@ -97,9 +97,6 @@ export const TripConfigurator: React.FC<TripConfiguratorProps> = ({
             <p className="text-[11px] text-[#66788A]">Sesuaikan kebutuhan kunjungan kunker delegasi</p>
           </div>
         </div>
-        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200">
-          Non-Pricing
-        </span>
       </div>
 
       {/* Segment Switcher in Configurator */}

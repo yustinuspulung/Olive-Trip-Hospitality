@@ -70,14 +70,8 @@ export const HomePage: React.FC<HomePageProps> = ({
       />
 
       {/* Section Logo Hotel Partners (Auto Moving List Logo - Kanan ke Kiri) */}
-      <HotelPartnersMarquee
-        onSelectHotelBySlug={(slug) => {
-          const hotel = HOTELS.find((h) => h.slug === slug);
-          if (hotel) {
-            onSelectHotel(hotel);
-          }
-        }}
-      />
+      <HotelPartnersMarquee />
+
 
       {/* Delegation Segment Switcher Bar */}
       <div className="bg-[#F8FBFE] border-y border-[#DCE5ED] py-3 px-4">
@@ -183,7 +177,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </div>
               </div>
 
-              {/* Hotels Grid */}
+              {/* Hotels Grid - 3 Columns on Website Mode, Displaying All 15 Hotels */}
               {filteredHotels.length === 0 ? (
                 <div className="py-12 text-center bg-[#F8FBFE] rounded-xl border border-dashed border-[#DCE5ED]">
                   <p className="text-sm font-semibold text-[#062846]">Hotel tidak ditemukan untuk filter ini.</p>
@@ -193,31 +187,20 @@ export const HomePage: React.FC<HomePageProps> = ({
                       setActiveZone('All');
                       setSearchQuery('');
                     }}
-                    className="mt-3 text-xs font-bold text-[#1B6FAE] hover:underline"
+                    className="mt-3 text-xs font-bold text-[#1B6FAE] hover:underline cursor-pointer"
                   >
                     Reset Filter
                   </button>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {filteredHotels.slice(0, 8).map((hotel) => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                  {filteredHotels.map((hotel) => (
                     <HotelCard
                       key={hotel.id}
                       hotel={hotel}
                       onSelect={onSelectHotel}
                     />
                   ))}
-                </div>
-              )}
-
-              {filteredHotels.length > 8 && (
-                <div className="text-center pt-2">
-                  <button
-                    onClick={() => onNavigate('/hotels')}
-                    className="px-6 py-2.5 rounded-lg border border-[#DCE5ED] bg-white hover:bg-[#F8FBFE] text-xs font-bold text-[#062846] transition-colors"
-                  >
-                    Tampilkan {filteredHotels.length - 8} Hotel Lainnya →
-                  </button>
                 </div>
               )}
             </section>
@@ -261,7 +244,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
 
           {/* Right Column: Sticky Trip Configurator Rail */}
-          <aside className="lg:col-span-4">
+          <aside className="lg:col-span-4 lg:sticky lg:top-28 self-start z-30">
             <TripConfigurator
               delegationType={delegationType}
               onDelegationTypeChange={setDelegationType}

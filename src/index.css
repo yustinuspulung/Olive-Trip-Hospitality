@@ -55,17 +55,23 @@
   animation: marquee-to-left 40s linear infinite;
 }
 
-.animate-marquee-track:hover {
-  animation-play-state: paused;
-}
-
-.pause-animation {
-  animation-play-state: paused !important;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee-track {
     animation-duration: 90s;
   }
 }
 
+/* Sleek custom scrollbar for sticky configurator rail */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}

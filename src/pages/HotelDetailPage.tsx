@@ -12,6 +12,7 @@ import {
   FileText, 
   ShieldCheck, 
   Building2, 
+  Landmark,
   Utensils, 
   Briefcase, 
   Sparkles,
@@ -206,45 +207,67 @@ export const HotelDetailPage: React.FC<HotelDetailPageProps> = ({
               }} 
             />
 
-            {/* Dual Guarantee B2B & B2G Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* B2B Guarantee */}
-              <div className="p-4 rounded-xl bg-[#F8FBFE] border border-blue-200 space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#062846]">B2B Best Price Guarantee</span>
-                  <span className="text-[10px] font-bold px-2 py-0.2 rounded bg-blue-100 text-blue-800">Corporate</span>
+            {/* Dual Guarantee B2B & B2G Executive Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" id="b2b-b2g-guarantee-section">
+              {/* B2B Guarantee Card */}
+              <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-[#E7B84B] via-[#DFAB36] to-[#D4A12B] border-2 border-[#062846] text-[#062846] shadow-md hover:shadow-xl transition-all duration-200 flex flex-col justify-between space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#062846] border border-[#062846]/20 flex items-center justify-center shrink-0 shadow-sm">
+                      <Building2 className="w-5 h-5 text-[#E7B84B]" />
+                    </div>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-extrabold text-[#062846] tracking-tight">B2B Corporate</h4>
+                      <p className="text-[11px] text-[#062846]/85 font-extrabold">Skema Kerjasama Korporasi</p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-[#062846]/90 font-medium leading-relaxed">
+                    Paket akomodasi &amp; mobilitas terkoordinasi langsung dengan tim Olive Trip &amp; Hospitality. Satu invoice konsolidasi tanpa beban administrasi terpisah.
+                  </p>
                 </div>
-                <p className="text-[11px] text-[#66788A] leading-relaxed">
-                  "Dapatkan paket akomodasi &amp; mobilitas terkoordinasi langsung dengan tim Olive Trip &amp; Hospitality tanpa beban administrasi terpisah."
-                </p>
+
                 <a
-                  href={`https://wa.me/6281288805482?text=Halo%20Olive%20Trip,%20saya%20ingin%20konsultasi%20B2B%20Corporate%20untuk%20${encodeURIComponent(hotel.name)}`}
+                  href={`https://wa.me/6281288805482?text=${encodeURIComponent(
+                    `Halo Admin Olive Trip & Hospitality,\n\n[TAG: B2B CORPORATE PARTNERSHIP]\nSaya PIC Korporat / BUMN ingin berkonsultasi mengenai penawaran resmi (B2B Corporate Rate), konsolidasi invoice, & fasilitas akomodasi untuk:\n• Properti Hotel: ${hotel.name}\n\nMohon informasi ketersediaan kuota & penawaran harga khusus korporasi. Terima kasih.`
+                  )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 w-full py-2 rounded-lg bg-[#1DB954] hover:bg-[#189d47] text-white text-xs font-bold transition-colors shadow-xs"
+                  className="inline-flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-[#062846] hover:bg-[#09355C] text-white text-xs font-extrabold transition-all shadow-md group border border-[#1B6FAE]/40"
                 >
-                  <PhoneCall className="w-3.5 h-3.5" />
-                  <span>Hubungi WhatsApp: 0812-8880-5482</span>
+                  <PhoneCall className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Konsultasi B2B Corporate</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-white opacity-80 group-hover:translate-x-0.5 transition-transform" />
                 </a>
               </div>
 
-              {/* B2G Guarantee */}
-              <div className="p-4 rounded-xl bg-[#FFF9F2] border border-amber-200 space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#062846]">B2G Best Price Guarantee</span>
-                  <span className="text-[10px] font-bold px-2 py-0.2 rounded bg-amber-100 text-amber-800">Government</span>
+              {/* B2G Government Guarantee Card */}
+              <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-[#062846] via-[#083358] to-[#041E34] border-2 border-[#E7B84B] text-white shadow-md hover:shadow-xl transition-all duration-200 flex flex-col justify-between space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#E7B84B]/15 border border-[#E7B84B]/40 flex items-center justify-center shrink-0 shadow-inner">
+                      <Landmark className="w-5 h-5 text-[#E7B84B]" />
+                    </div>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-extrabold text-white tracking-tight">B2G Government</h4>
+                      <p className="text-[11px] text-[#E7B84B] font-semibold">Skema Kerjasama Instansi Pemerintah</p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-slate-200 leading-relaxed">
+                    Tarif resmi rombongan dinas instansi pemerintah disesuaikan dengan Standar Biaya Masukan (SBU/Perdir), lengkap dengan SPK &amp; Faktur Pajak.
+                  </p>
                 </div>
-                <p className="text-[11px] text-[#66788A] leading-relaxed">
-                  "Tarif khusus delegasi dinas pemerintah disesuaikan dengan Standar Biaya Masukan (SBU/Perdir) kementerian/lembaga, lengkap dengan invoice &amp; dokumen legal."
-                </p>
+
                 <a
-                  href={`https://wa.me/6281288805482?text=Halo%20Olive%20Trip,%20saya%20PIC%20Dinas%20ingin%20konsultasi%20SBU%20pemerintah%20untuk%20${encodeURIComponent(hotel.name)}`}
+                  href={`https://wa.me/6281288805482?text=${encodeURIComponent(
+                    `Halo Admin Olive Trip & Hospitality,\n\n[TAG: B2G GOVERNMENT DELEGATION]\nSaya PIC Dinas / Instansi Pemerintah ingin berkonsultasi mengenai alokasi kuota rombongan, kesesuaian Standar Biaya Masukan (SBU Kemenkeu/Perdir), SPK & Faktur Pajak Resmi untuk:\n• Properti Hotel: ${hotel.name}\n\nMohon arahan alokasi kuota & skema penawaran resmi dinas. Terima kasih.`
+                  )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 w-full py-2 rounded-lg bg-[#FF5E1F] hover:bg-[#e04f18] text-white text-xs font-bold transition-colors shadow-xs"
+                  className="inline-flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-[#E7B84B] hover:bg-[#D9A738] text-slate-950 text-xs font-extrabold transition-all shadow-md group border border-[#F5D88D]"
                 >
-                  <PhoneCall className="w-3.5 h-3.5" />
-                  <span>Konsultasi SBU Dinas: 0812-8880-5482</span>
+                  <PhoneCall className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Konsultasi B2G Government</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-950 opacity-80 group-hover:translate-x-0.5 transition-transform" />
                 </a>
               </div>
             </div>
