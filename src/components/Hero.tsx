@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Building2, Car, Compass, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Building2, Car, Compass, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 
 declare global {
   interface Window {
@@ -28,13 +28,13 @@ export const Hero: React.FC<HeroProps> = ({ onExploreHotels, onExploreTransport 
       if (window.YT && window.YT.Player && playerContainerRef.current && isMounted) {
         try {
           playerRef.current = new window.YT.Player(playerContainerRef.current, {
-            videoId: 'BatVJ6dAU-c',
+            videoId: 'b3SXx1ARl9k',
             playerVars: {
               autoplay: 1,
               mute: 1,
               controls: 0,
               loop: 1,
-              playlist: 'BatVJ6dAU-c',
+              playlist: 'b3SXx1ARl9k',
               playsinline: 1,
               enablejsapi: 1,
               origin: originUrl,
@@ -55,7 +55,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreHotels, onExploreTransport 
                     event.target.setPlaybackQuality('hd1080');
                   }
                   if (typeof event.target.setPlaybackQualityRange === 'function') {
-                    event.target.setPlaybackQualityRange('hd1080', 'hd1080');
+                    event.target.setPlaybackQualityRange('hd1080', 'highres');
                   }
                   event.target.playVideo();
                 } catch (e) {
@@ -163,10 +163,12 @@ export const Hero: React.FC<HeroProps> = ({ onExploreHotels, onExploreTransport 
             visibility: isPlayerPlaying ? 'visible' : 'hidden',
           }}
         >
-          <div
-            ref={playerContainerRef}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300%] h-[300%] sm:w-[220%] sm:h-[220%] lg:w-[160%] lg:h-[160%] min-w-full min-h-full object-cover pointer-events-none select-none scale-110"
-          />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600%] h-[600%] min-w-[300vh] min-h-[300vw] sm:w-[260%] sm:h-[260%] lg:w-[180%] lg:h-[180%] pointer-events-none select-none scale-105">
+            <div
+              ref={playerContainerRef}
+              className="w-full h-full pointer-events-none select-none"
+            />
+          </div>
         </div>
       )}
 
@@ -183,21 +185,26 @@ export const Hero: React.FC<HeroProps> = ({ onExploreHotels, onExploreTransport 
       />
 
       {/* 5. Hero Interactive Content Layer */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left Column: Eyebrow, Title, Subtitle, Supporting text, CTAs */}
-          <div className="lg:col-span-8 space-y-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-xs border border-white/15 text-[#E7B84B] text-xs font-bold tracking-widest uppercase">
-              <span className="w-2 h-2 rounded-full bg-[#E7B84B] animate-pulse"></span>
-              WELCOME TO
+          <div className="lg:col-span-8 space-y-4 sm:space-y-5 break-words max-w-full">
+            <div className="inline-flex items-center gap-3">
+              <span className="w-6 sm:w-10 h-[1px] bg-gradient-to-r from-transparent to-[#E7B84B]/80" />
+              <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#062846]/80 backdrop-blur-md border border-[#E7B84B]/40 shadow-[0_2px_14px_rgba(231,184,75,0.18)]">
+                <span className="text-[11px] sm:text-xs font-bold text-[#E7B84B] tracking-[0.25em] uppercase font-serif">
+                  WELCOME TO
+                </span>
+              </div>
+              <span className="w-6 sm:w-10 h-[1px] bg-gradient-to-l from-transparent to-[#E7B84B]/80" />
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight font-serif">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight font-serif break-words">
               Olive Trip &amp; Hospitality
             </h1>
 
-            <div className="text-lg sm:text-xl font-semibold text-blue-100 border-l-3 border-[#E7B84B] pl-3 py-0.5">
+            <div className="text-base sm:text-xl font-semibold text-blue-100 border-l-3 border-[#E7B84B] pl-3 py-0.5 break-words">
               Accommodation &amp; Mobility Solutions for Jakarta Executive Visits
             </div>
 
@@ -231,76 +238,90 @@ export const Hero: React.FC<HeroProps> = ({ onExploreHotels, onExploreTransport 
             </div>
           </div>
 
-          {/* Right Column: Hero KPI Card (15 Hotel Partners / 6 Pilihan Armada / 6+ Kategori Aksesibilitas) */}
+          {/* Right Column: Hero Executive Overview Card with Exact Google AI Studio Style Animated Glowing Border */}
           <div className="lg:col-span-4">
-            <div 
-              id="hero-kpi-card"
-              className="bg-[#16324E]/95 border border-white/20 rounded-2xl p-6 sm:p-7 shadow-2xl backdrop-blur-md relative overflow-hidden"
-            >
-              {/* Subtle gold glow corner */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#E7B84B]/10 rounded-full blur-2xl pointer-events-none" />
+            <div className="relative p-[1.5px] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] group/card">
+              {/* 1. Outer Ambient Glow Halo (Exact Google AI Studio 4-color aura glow) */}
+              <div className="gemini-ambient-halo pointer-events-none" />
 
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/15">
-                <div className="text-xs font-bold text-[#E7B84B] tracking-wider uppercase">
-                  Executive KPI Overview
-                </div>
-                <div className="text-[11px] text-slate-300 bg-white/10 px-2 py-0.5 rounded">
-                  Terverifikasi 2026
-                </div>
-              </div>
+              {/* 2. Rotating Border Light Beam */}
+              <div className="gemini-border-glow pointer-events-none" />
 
-              <div className="space-y-4">
-                {/* KPI 1 */}
-                <div className="flex items-center gap-4 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
-                  <div className="w-12 h-12 rounded-xl bg-[#062846] flex items-center justify-center text-[#E7B84B] shadow-inner shrink-0 border border-white/10">
-                    <Building2 className="w-6 h-6" />
+              {/* 3. Main Inner Card Container */}
+              <div 
+                id="hero-kpi-card"
+                className="relative rounded-[15px] bg-gradient-to-b from-[#0A2540]/95 via-[#061A2E]/98 to-[#082038]/95 backdrop-blur-xl p-6 sm:p-7 z-10 overflow-hidden"
+              >
+                {/* Header Section */}
+                <div className="flex items-center justify-between pb-4 mb-5 border-b border-[#E7B84B]/20">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E7B84B] shadow-[0_0_8px_#E7B84B]" />
+                    <span className="text-xs font-bold text-[#E7B84B] tracking-[0.2em] uppercase font-serif">
+                      Executive Overview
+                    </span>
                   </div>
-                  <div>
-                    <div className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                      15
-                    </div>
-                    <div className="text-xs sm:text-sm font-semibold text-slate-200">
-                      Hotel Partners
-                    </div>
-                    <div className="text-[11px] text-slate-400">Ring-1 &amp; Koridor Bisnis Utama</div>
+                  <div className="px-2.5 py-0.5 rounded-full bg-[#E7B84B]/10 border border-[#E7B84B]/25 text-[10px] font-semibold text-[#E7B84B] tracking-wider uppercase">
+                    Verified
                   </div>
                 </div>
 
-                {/* KPI 2 */}
-                <div className="flex items-center gap-4 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
-                  <div className="w-12 h-12 rounded-xl bg-[#062846] flex items-center justify-center text-[#1B6FAE] shadow-inner shrink-0 border border-white/10">
-                    <Car className="w-6 h-6 text-sky-400" />
+                {/* 3 Luxury KPI Cards */}
+                <div className="space-y-3.5">
+                  {/* Item 1 */}
+                  <div className="flex items-center gap-4 p-3.5 rounded-xl bg-gradient-to-r from-white/[0.06] to-white/[0.02] border border-white/10 hover:border-[#E7B84B]/40 hover:bg-gradient-to-r hover:from-[#E7B84B]/10 hover:to-white/[0.04] transition-all duration-300 shadow-xs group/item">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#062846] to-[#0E3B64] border border-[#E7B84B]/35 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center text-[#E7B84B] group-hover/item:scale-105 group-hover/item:border-[#E7B84B]/60 transition-transform duration-300 shrink-0">
+                      <Building2 className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-amber-200 tracking-tight font-serif">
+                        15
+                      </div>
+                      <div className="text-xs sm:text-sm font-bold text-[#FFFFFF] group-hover/item:text-[#E7B84B] transition-colors">
+                        Hotel Partners
+                      </div>
+                      <div className="text-[11px] text-slate-300/80 mt-0.5">Ring-1 &amp; Koridor Bisnis Utama</div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                      6
+
+                  {/* Item 2 */}
+                  <div className="flex items-center gap-4 p-3.5 rounded-xl bg-gradient-to-r from-white/[0.06] to-white/[0.02] border border-white/10 hover:border-[#1B6FAE]/50 hover:bg-gradient-to-r hover:from-[#1B6FAE]/10 hover:to-white/[0.04] transition-all duration-300 shadow-xs group/item">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#062846] to-[#0E3B64] border border-[#1B6FAE]/40 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center text-sky-400 group-hover/item:scale-105 group-hover/item:border-sky-400/60 transition-transform duration-300 shrink-0">
+                      <Car className="w-6 h-6" />
                     </div>
-                    <div className="text-xs sm:text-sm font-semibold text-slate-200">
-                      Pilihan Armada
+                    <div>
+                      <div className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-sky-200 tracking-tight font-serif">
+                        6
+                      </div>
+                      <div className="text-xs sm:text-sm font-bold text-[#FFFFFF] group-hover/item:text-sky-300 transition-colors">
+                        Pilihan Armada
+                      </div>
+                      <div className="text-[11px] text-slate-300/80 mt-0.5">Sedan, SUV, Hiace s/d Big Bus</div>
                     </div>
-                    <div className="text-[11px] text-slate-400">Sedan, SUV, Hiace s/d Big Bus</div>
+                  </div>
+
+                  {/* Item 3 */}
+                  <div className="flex items-center gap-4 p-3.5 rounded-xl bg-gradient-to-r from-white/[0.06] to-white/[0.02] border border-white/10 hover:border-emerald-400/40 hover:bg-gradient-to-r hover:from-emerald-500/10 hover:to-white/[0.04] transition-all duration-300 shadow-xs group/item">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#062846] to-[#0E3B64] border border-emerald-400/35 shadow-[0_4px_12px_rgba(0,0,0,0.3)] flex items-center justify-center text-emerald-400 group-hover/item:scale-105 group-hover/item:border-emerald-400/60 transition-transform duration-300 shrink-0">
+                      <Compass className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-emerald-200 tracking-tight font-serif">
+                        6+
+                      </div>
+                      <div className="text-xs sm:text-sm font-bold text-[#FFFFFF] group-hover/item:text-[#1DB954] transition-colors">
+                        Kategori Aksesibilitas
+                      </div>
+                      <div className="text-[11px] text-slate-300/80 mt-0.5">MRT/LRT, RS, Mall, Kuliner, dll.</div>
+                    </div>
                   </div>
                 </div>
 
-                {/* KPI 3 */}
-                <div className="flex items-center gap-4 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
-                  <div className="w-12 h-12 rounded-xl bg-[#062846] flex items-center justify-center text-emerald-400 shadow-inner shrink-0 border border-white/10">
-                    <Compass className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <div className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                      6+
-                    </div>
-                    <div className="text-xs sm:text-sm font-semibold text-slate-200">
-                      Kategori Aksesibilitas
-                    </div>
-                    <div className="text-[11px] text-slate-400">MRT/LRT, RS, Mall, Kuliner, dll.</div>
-                  </div>
+                {/* Luxury Footer Tagline */}
+                <div className="mt-5 pt-4 border-t border-[#E7B84B]/20 flex items-center justify-center gap-2 text-[11px] font-medium text-slate-300 tracking-wide">
+                  <span className="text-[#E7B84B] text-[10px]">✦</span>
+                  <span>Solusi Terpadu Kunjungan Eksekutif DKI Jakarta</span>
+                  <span className="text-[#E7B84B] text-[10px]">✦</span>
                 </div>
-              </div>
-
-              <div className="mt-5 pt-4 border-t border-white/10 text-[11px] text-slate-300 text-center">
-                Solusi Terpusat Kunjungan Eksekutif DKI Jakarta
               </div>
             </div>
           </div>

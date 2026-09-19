@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, MapPin, CheckCircle2, ArrowRight, ExternalLink } from 'lucide-react';
+import { Star, MapPin, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Hotel } from '../types';
 
 interface HotelCardProps {
@@ -42,19 +42,6 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelect }) => {
             />
           </div>
         )}
-
-        {/* Source indicator overlay button */}
-        <a
-          href={hotel.officialUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          className="absolute bottom-2.5 right-2.5 p-1.5 rounded-md bg-black/60 hover:bg-black/90 text-white text-[10px] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity z-20"
-          title="Buka Website Resmi Hotel"
-        >
-          <span>Web Resmi</span>
-          <ExternalLink className="w-3 h-3" />
-        </a>
       </div>
 
       {/* Hotel Card Body */}

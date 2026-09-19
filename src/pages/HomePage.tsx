@@ -73,43 +73,6 @@ export const HomePage: React.FC<HomePageProps> = ({
       <HotelPartnersMarquee />
 
 
-      {/* Delegation Segment Switcher Bar */}
-      <div className="bg-[#F8FBFE] border-y border-[#DCE5ED] py-3 px-4">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-xs font-semibold text-[#24364B]">
-            <span className="text-[#66788A]">Filter Kategori Delegasi:</span>
-            <span className="text-[#062846] hidden sm:inline">Pilih jenis instansi untuk penyesuaian kepatuhan dinas:</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setDelegationType('B2G_GOVERNMENT')}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                delegationType === 'B2G_GOVERNMENT'
-                  ? 'bg-[#062846] text-white shadow-xs'
-                  : 'bg-white text-[#66788A] border border-[#DCE5ED] hover:bg-slate-50'
-              }`}
-            >
-              <Building2 className="w-3.5 h-3.5 text-[#E7B84B]" />
-              <span>🏛 Delegasi Pemerintah (B2G) • Standar SBU</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setDelegationType('B2B_CORPORATE')}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                delegationType === 'B2B_CORPORATE'
-                  ? 'bg-[#062846] text-white shadow-xs'
-                  : 'bg-white text-[#66788A] border border-[#DCE5ED] hover:bg-slate-50'
-              }`}
-            >
-              <Briefcase className="w-3.5 h-3.5 text-[#1B6FAE]" />
-              <span>🏢 Korporasi / Swasta (B2B)</span>
-            </button>
-          </div>
-        </div>
-      </div>
 
       {/* Main Split Portal Layout */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
@@ -437,11 +400,10 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* Bottom Quotation CTA Banner */}
       <section className="bg-gradient-to-r from-[#062846] to-[#16324E] text-white py-12">
         <div className="max-w-5xl mx-auto px-4 text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#E7B84B] text-xs font-bold uppercase">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-white/10 text-[#E7B84B] text-xs font-bold uppercase tracking-wider">
             Layanan Bebas Repot Koordinasi
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-serif">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight font-serif text-[#FFFFFF] drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
             Siap Mengatur Kunjungan Dinas Delegasi Anda?
           </h2>
           <p className="text-xs sm:text-sm text-slate-200 max-w-2xl mx-auto leading-relaxed">

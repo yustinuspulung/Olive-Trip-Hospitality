@@ -18,8 +18,14 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
     <footer className="bg-gradient-to-b from-[#041A2F] via-[#062846] to-[#031527] text-white border-t border-[#13385B] relative overflow-hidden font-sans no-print">
-      {/* Top Metallic Gold/Blue Accent Line */}
-      <div className="h-1 w-full bg-gradient-to-r from-[#1B6FAE] via-[#E7B84B] to-[#1DB954]" />
+      {/* Top Animated Metallic Gold/Blue/Green Shimmer Line with Outer Ambient Glow Halo */}
+      <div className="relative w-full h-1 overflow-visible pointer-events-none z-20">
+        {/* 1. Outer Ambient Glow Halo Layer */}
+        <div className="absolute inset-y-[-6px] inset-x-0 animated-line-halo pointer-events-none" />
+
+        {/* 2. Sharp Moving Foreground Shimmer Line */}
+        <div className="absolute inset-0 animated-line-glow pointer-events-none shadow-xs" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* Main Grid Section */}

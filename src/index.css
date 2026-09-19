@@ -48,11 +48,32 @@
   }
 }
 
+/* Auto-moving marquee (Left to Right) */
+@keyframes marquee-to-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .animate-marquee-track {
   display: flex;
   width: max-content;
   will-change: transform;
   animation: marquee-to-left 40s linear infinite;
+}
+
+.animate-topbar-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-to-right 55s linear infinite;
+}
+
+.animate-topbar-marquee:hover {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -74,4 +95,106 @@
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
+}
+
+/* Google AI Studio Authentic Discontinuous Light Beam & Breathing Pulse Animation */
+@keyframes gemini-gradient-shift {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gemini-breath {
+  0%, 100% {
+    opacity: 0.25;
+    filter: blur(8px);
+  }
+  50% {
+    opacity: 0.55;
+    filter: blur(16px);
+  }
+}
+
+.gemini-border-glow {
+  position: absolute;
+  inset: -150%;
+  background: conic-gradient(
+    from 0deg,
+    #E7B84B 0deg,
+    #FCD34D 55deg,
+    transparent 105deg,
+    transparent 155deg,
+    #F59E0B 195deg,
+    #E7B84B 245deg,
+    transparent 285deg,
+    #D97706 325deg,
+    #E7B84B 360deg
+  );
+  animation: gemini-gradient-shift 12s linear infinite;
+  will-change: transform;
+}
+
+.gemini-ambient-halo {
+  position: absolute;
+  inset: -8px;
+  background: conic-gradient(
+    from 0deg,
+    #E7B84B 0deg,
+    #FCD34D 55deg,
+    transparent 105deg,
+    transparent 155deg,
+    #F59E0B 195deg,
+    #E7B84B 245deg,
+    transparent 285deg,
+    #D97706 325deg,
+    #E7B84B 360deg
+  );
+  animation: gemini-gradient-shift 12s linear infinite, gemini-breath 4.5s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+}
+
+/* Top Accent Line Animated Shimmer & Ambient Glow Halo */
+@keyframes line-glow-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-line-glow {
+  background: linear-gradient(
+    90deg,
+    #1B6FAE 0%,
+    #E7B84B 25%,
+    #FCD34D 50%,
+    #1DB954 75%,
+    #1B6FAE 100%
+  );
+  background-size: 200% 200%;
+  animation: line-glow-shift 7s ease infinite;
+  will-change: background-position;
+}
+
+.animated-line-halo {
+  background: linear-gradient(
+    90deg,
+    #1B6FAE 0%,
+    #E7B84B 25%,
+    #FCD34D 50%,
+    #1DB954 75%,
+    #1B6FAE 100%
+  );
+  background-size: 200% 200%;
+  animation: line-glow-shift 7s ease infinite, gemini-breath 4.5s ease-in-out infinite;
+  filter: blur(10px);
+  opacity: 0.65;
+  will-change: background-position, opacity, filter;
 }

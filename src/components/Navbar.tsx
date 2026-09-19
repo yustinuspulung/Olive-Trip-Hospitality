@@ -23,24 +23,37 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#DCE5ED] shadow-xs no-print">
-      {/* Top utility bar (Desktop & Tablet) */}
-      <div className="bg-[#062846] text-white text-xs py-1.5 px-4 hidden md:block">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4 text-[#DCE5ED]">
-            <span className="flex items-center gap-1.5">
-              <Shield className="w-3.5 h-3.5 text-[#E7B84B]" />
-              Platform Koordinasi Resmi B2G &amp; B2B Jabodetabek
-            </span>
-            <span className="text-[#66788A]">|</span>
-            <span className="text-[#E7B84B] font-medium">Standar Biaya Masukan (SBU) &amp; SOP Protokoler</span>
-          </div>
-          <div className="flex items-center gap-4 text-xs">
-            <span className="text-slate-300">Comfortable Stay</span>
-            <span className="text-slate-500">•</span>
-            <span className="text-slate-300">Safe Journey</span>
-            <span className="text-slate-500">•</span>
-            <span className="text-slate-300">Productive Visit</span>
-          </div>
+      {/* Top utility bar with continuous right-to-left marquee animation */}
+      <div className="bg-[#062846] text-white text-xs py-1.5 relative overflow-hidden select-none border-b border-[#0B3A64]">
+        {/* Left & Right Edge Gradient Fades for Smooth Enter/Exit */}
+        <div 
+          className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[#062846] to-transparent z-10 pointer-events-none" 
+          aria-hidden="true" 
+        />
+        <div 
+          className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[#062846] to-transparent z-10 pointer-events-none" 
+          aria-hidden="true" 
+        />
+
+        {/* Continuous Auto-Moving Track (Right to Left) */}
+        <div className="animate-topbar-marquee flex items-center">
+          {[1, 2, 3, 4].map((repeatKey) => (
+            <div key={repeatKey} className="flex items-center gap-6 shrink-0 px-4 text-[#DCE5ED]">
+              <span className="flex items-center gap-1.5 font-medium">
+                <Shield className="w-3.5 h-3.5 text-[#E7B84B]" />
+                Platform Koordinasi Akomodasi dan Transportasi B2G &amp; B2B Jabodetabek
+              </span>
+              <span className="text-[#1B5280] font-bold">•</span>
+              <span className="text-[#E7B84B] font-semibold">Standar Biaya Masukan (SBU) &amp; SOP Protokoler</span>
+              <span className="text-[#1B5280] font-bold">•</span>
+              <span className="text-slate-300">Comfortable Stay</span>
+              <span className="text-slate-500">•</span>
+              <span className="text-slate-300">Safe Journey</span>
+              <span className="text-slate-500">•</span>
+              <span className="text-slate-300">Productive Visit</span>
+              <span className="text-[#1B5280] font-bold mr-2">•</span>
+            </div>
+          ))}
         </div>
       </div>
 
