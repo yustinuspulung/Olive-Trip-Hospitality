@@ -188,27 +188,17 @@ export const Hero: React.FC<HeroProps> = ({ onExploreHotels, onExploreTransport 
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column: Eyebrow, Title, Subtitle, Supporting text, CTAs */}
-          <div className="lg:col-span-8 space-y-4 sm:space-y-5 break-words max-w-full">
-            <div className="inline-flex items-center gap-3">
-              <span className="w-6 sm:w-10 h-[1px] bg-gradient-to-r from-transparent to-[#E7B84B]/80" />
-              <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#062846]/80 backdrop-blur-md border border-[#E7B84B]/40 shadow-[0_2px_14px_rgba(231,184,75,0.18)]">
-                <span className="text-[11px] sm:text-xs font-bold text-[#E7B84B] tracking-[0.25em] uppercase font-serif">
-                  WELCOME TO
-                </span>
-              </div>
-              <span className="w-6 sm:w-10 h-[1px] bg-gradient-to-l from-transparent to-[#E7B84B]/80" />
-            </div>
-
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight font-serif break-words">
+          {/* Left Column: Title, Subtitle, Supporting text, CTAs */}
+          <div className="lg:col-span-8 space-y-4 sm:space-y-6 break-words max-w-full">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] font-serif break-words">
               Olive Trip &amp; Hospitality
             </h1>
 
-            <div className="text-base sm:text-xl font-semibold text-blue-100 border-l-3 border-[#E7B84B] pl-3 py-0.5 break-words">
+            <div className="text-base sm:text-xl lg:text-2xl font-bold text-[#E7B84B] border-l-3 border-[#E7B84B] pl-3.5 py-0.5 break-words tracking-wide">
               Accommodation &amp; Mobility Solutions for Jakarta Executive Visits
             </div>
 
-            <p className="text-sm sm:text-base text-slate-200 max-w-2xl leading-relaxed font-normal">
+            <p className="text-sm sm:text-base text-slate-200/90 max-w-2xl leading-relaxed font-normal pt-1">
               Kami siap mendukung kunjungan kerja delegasi pemerintahan dan korporasi dengan pilihan hotel terbaik dan transportasi yang aman, nyaman, dan representatif.
             </p>
 
