@@ -194,7 +194,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreHotels, onExploreTransport 
               Olive Trip &amp; Hospitality
             </h1>
 
-            <div className="text-base sm:text-xl lg:text-2xl font-bold text-[#E7B84B] border-l-3 border-[#E7B84B] pl-3.5 py-0.5 break-words tracking-wide">
+            <div className="text-base sm:text-xl lg:text-2xl font-bold text-white border-l-3 border-[#E7B84B] pl-3.5 py-0.5 break-words tracking-wide">
               Accommodation &amp; Mobility Solutions for Jakarta Executive Visits
             </div>
 
