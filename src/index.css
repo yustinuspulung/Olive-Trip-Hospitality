@@ -62,7 +62,7 @@
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: marquee-to-left 40s linear infinite;
+  animation: marquee-to-right 40s linear infinite;
 }
 
 .animate-topbar-marquee {
