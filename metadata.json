@@ -1,0 +1,6 @@
+{
+  "name": "Olive Trip & Hospitality",
+  "description": "Accommodation & Mobility Solutions for Jakarta Executive Visits",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
