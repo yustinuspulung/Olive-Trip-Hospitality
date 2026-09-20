@@ -134,7 +134,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Cari hotel, PIC, area..."
+                    placeholder="Cari hotel, area..."
                     className="w-full text-xs bg-white border border-[#DCE5ED] rounded-lg pl-9 pr-3 py-2 text-[#24364B] placeholder-[#66788A] focus:outline-none focus:border-[#1B6FAE]"
                   />
                 </div>
