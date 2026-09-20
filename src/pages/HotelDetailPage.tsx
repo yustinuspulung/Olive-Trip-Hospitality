@@ -100,7 +100,7 @@ export const HotelDetailPage: React.FC<HotelDetailPageProps> = ({
             {/* Hotel Header & Main Info */}
             <div className="bg-white p-6 rounded-2xl border border-[#DCE5ED] shadow-xs space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <StarBadge stars={hotel.stars} starCategory={hotel.starCategory} slug={hotel.slug} name={hotel.name} textSize="text-sm sm:text-base" starSize="w-6 h-6" />
+                <StarBadge stars={hotel.stars} starCategory={hotel.starCategory} slug={hotel.slug} name={hotel.name} textSize="text-sm font-extrabold" starSize="w-[20px] h-[20px]" />
 
                 <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />

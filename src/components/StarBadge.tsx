@@ -17,19 +17,19 @@ export const StarBadge: React.FC<StarBadgeProps> = ({
   slug,
   name,
   className = '',
-  starSize = 'w-6 h-6',
+  starSize = 'w-[18px] h-[18px]',
   textSize = 'text-xs',
 }) => {
   const categoryLabel = starCategory || 'Hotel';
 
   return (
     <div
-      className={`inline-flex items-center gap-1.5 ${className}`}
+      className={`inline-flex items-center gap-1 ${className}`}
       title={`${stars} Bintang (${categoryLabel})`}
     >
       <div className={`relative inline-flex items-center justify-center ${starSize} shrink-0`}>
-        <Star className={`${starSize} text-amber-400 fill-amber-400 drop-shadow-xs`} />
-        <span className="absolute inset-0 flex items-center justify-center text-[10.5px] font-black text-[#062846] leading-none select-none pt-[1px]">
+        <Star className={`${starSize} text-amber-400 fill-amber-400`} />
+        <span className="absolute inset-0 flex items-center justify-center text-[8.5px] font-black text-[#062846] leading-none select-none pt-[0.5px]">
           {stars}
         </span>
       </div>
