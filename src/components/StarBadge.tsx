@@ -20,11 +20,7 @@ export const StarBadge: React.FC<StarBadgeProps> = ({
   starSize = 'w-6 h-6',
   textSize = 'text-xs',
 }) => {
-  const isLuwansa =
-    (slug && slug.includes('luwansa')) ||
-    (name && name.toLowerCase().includes('luwansa'));
-
-  const categoryLabel = starCategory || (isLuwansa ? 'Upscale Hotel' : 'Hotel');
+  const categoryLabel = starCategory || 'Hotel';
 
   return (
     <div
