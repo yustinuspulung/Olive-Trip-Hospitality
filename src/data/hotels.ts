@@ -10,6 +10,7 @@ const RAW_HOTELS: Hotel[] = [
     cityZone: 'South Jakarta',
     address: 'Jl. H. R. Rasuna Said Kav. C-22, Karet Kuningan, Setiabudi, Jakarta Selatan 12940',
     stars: 4,
+    starCategory: 'Upscale Hotel',
     verified: true,
     officialUrl: 'https://www.jsluwansa.com/',
     sourceUrl: 'https://www.jsluwansa.com/',

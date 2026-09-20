@@ -50,6 +50,7 @@ export interface Hotel {
   cityZone: 'Central Jakarta' | 'South Jakarta' | 'West Jakarta' | 'East Jakarta' | 'Bekasi' | 'BSD Serpong';
   address: string;
   stars: number;
+  starCategory?: string;
   verified: boolean;
   officialUrl: string;
   sourceUrl: string;

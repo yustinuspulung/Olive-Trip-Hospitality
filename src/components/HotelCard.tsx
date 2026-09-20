@@ -49,15 +49,10 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelect }) => {
         <div>
           {/* Stars & Area */}
           <div className="flex items-center justify-between gap-2 mb-1.5">
-            <div className="flex items-center gap-0.5" title={`${hotel.stars} Bintang`}>
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  key={i}
-                  className={`w-3.5 h-3.5 ${
-                    i < hotel.stars ? 'text-amber-400 fill-amber-400' : 'text-slate-200'
-                  }`}
-                />
-              ))}
+            <div className="flex items-center gap-1 text-xs font-bold text-[#062846]" title={`${hotel.stars} Bintang`}>
+              <span>{hotel.stars}</span>
+              <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0" />
+              <span>{hotel.starCategory || (hotel.slug?.includes('luwansa') || hotel.name?.toLowerCase().includes('luwansa') ? 'Upscale Hotel' : 'Hotel')}</span>
             </div>
             <span className="flex items-center gap-1 text-xs text-[#66788A] truncate">
               <MapPin className="w-3 h-3 text-[#1B6FAE] shrink-0" />

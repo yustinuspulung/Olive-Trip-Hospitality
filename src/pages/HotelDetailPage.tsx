@@ -100,20 +100,10 @@ export const HotelDetailPage: React.FC<HotelDetailPageProps> = ({
             {/* Hotel Header & Main Info */}
             <div className="bg-white p-6 rounded-2xl border border-[#DCE5ED] shadow-xs space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-0.5">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-4 h-4 ${
-                          i < hotel.stars ? 'text-amber-400 fill-amber-400' : 'text-slate-200'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-xs font-bold text-[#66788A]">
-                    {hotel.stars} Star Property
-                  </span>
+                <div className="flex items-center gap-1.5 text-sm font-bold text-[#062846]">
+                  <span>{hotel.stars}</span>
+                  <Star className="w-4 h-4 text-amber-400 fill-amber-400 shrink-0" />
+                  <span>{hotel.starCategory || (hotel.slug?.includes('luwansa') || hotel.name?.toLowerCase().includes('luwansa') ? 'Upscale Hotel' : 'Hotel')}</span>
                 </div>
 
                 <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
