@@ -184,8 +184,9 @@ export const AccessibilityRadar: React.FC<AccessibilityRadarProps> = ({ hotel })
                   `</div>` +
                 `</div>` +
                 `<div style="padding: 10px 12px; text-align: left;">` +
-                  `<div style="color: #f59e0b; font-size: 11px; margin-bottom: 3px;">` +
-                    `${'★'.repeat(hotel.stars)}` +
+                  `<div style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #062846; margin-bottom: 4px;">` +
+                    `<span style="position: relative; display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; color: #f59e0b; font-size: 18px; line-height: 1;">★<span style="position: absolute; color: #062846; font-size: 8px; font-weight: 900; top: 5px;">${hotel.stars}</span></span>` +
+                    `<span>${(hotel.slug && hotel.slug.includes('luwansa')) || (hotel.name && hotel.name.toLowerCase().includes('luwansa')) ? 'Upscale Hotel' : 'Hotel'}</span>` +
                   `</div>` +
                   `<h4 style="margin: 0 0 4px 0; color: #062846; font-size: 13px; font-weight: 800; line-height: 1.3;">` +
                     `${hotel.name}` +
